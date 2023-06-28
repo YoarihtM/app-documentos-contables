@@ -1,4 +1,4 @@
-import { getUser } from '../../src/base-pruebas/05-funciones';
+import { getUser, getUsuarioActivo } from '../../src/base-pruebas/05-funciones';
 
 
 // cuando sean objetos apuntan a objetos de memoria diferente y se evalan de acuerdo
@@ -15,9 +15,28 @@ describe('Pruebas en 05-funciones', () => {
         };
 
         const user = getUser();
-        console.log(user);
+        // console.log(user);
 
         expect( testUser ).toEqual( user );
 
-    }) 
+    })
+    
+    test('getUsuarioActivo debe retornar un objeto', () => { 
+
+        const name = 'Yoariht';
+
+        const testUsuarioActivo = {
+            uid: 'ABC567',
+            username: name
+        };
+
+        const usuarioActivo = getUsuarioActivo( name );
+
+        // console.log( usuarioActivo );
+
+        expect( testUsuarioActivo ).toStrictEqual( usuarioActivo );
+        // expect( testUsuarioActivo.username ).toBe( usuarioActivo.username );
+
+    })
+
 });
