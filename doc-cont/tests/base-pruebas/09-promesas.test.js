@@ -22,7 +22,7 @@ describe('pruebas en 09-promesas', () => {
     
     test('getHeroeByIdAsync debe de retornar un error si heroe no existe', ( done ) => { 
 
-        const id = 1;
+        const id = 100;
 
         getHeroeByIdAsync(id)
         .then( hero => {
