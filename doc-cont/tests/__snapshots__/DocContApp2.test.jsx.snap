@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas en DocContApp debe hacer match con el snapshot 1`] = `
+<div>
+  <h1
+    data-testid="test-title"
+  >
+     
+    Hola, Soy Goku
+     
+  </h1>
+  <h4>
+     
+    No hay subtítulo
+     
+  </h4>
+  <h4>
+     
+    No hay subtítulo
+     
+  </h4>
+  <p>
+     
+    Yoariht Macedo
+     
+  </p>
+</div>
+`;

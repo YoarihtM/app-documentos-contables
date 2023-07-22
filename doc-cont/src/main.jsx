@@ -8,7 +8,7 @@ import { CounterApp } from "./CounterApp";
 ReactDOM.createRoot(document.getElementById('root')).render(
 
     <React.StrictMode>
-        {/* <DocContApp /> */}
+        {/* <DocContApp title="Hola, soy vegeta" /> */}
         <CounterApp />
     </React.StrictMode>
 );

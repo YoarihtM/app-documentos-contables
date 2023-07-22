@@ -11,7 +11,8 @@ export const DocContApp = ({ title, subtitle, name }) => {
 
     return (
         <>
-            <h1> { title } </h1>
+            <h1 data-testid="test-title"> { title } </h1>
+            <h4> { subtitle } </h4>
             <h4> { subtitle } </h4>
             <p> { name } </p>
         </>
