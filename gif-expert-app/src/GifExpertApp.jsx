@@ -18,7 +18,7 @@ export const GifExpertApp = () => {
         // push muta el objeto y react evita mutar el objeto
 
         // setCategories( cat => [ ...cat, 'Valorant' ]);
-        setCategories([...categories, 'Valorant']);
+        setCategories(['Valorant', ...categories]);
 
     };
 
