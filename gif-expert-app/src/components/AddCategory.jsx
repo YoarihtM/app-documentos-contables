@@ -5,19 +5,27 @@ export const AddCategory = () => {
 
     const [inputValue, setInputValue] = useState('One Punch');
 
-    const onInputChange = (event) => {
+    const onInputChange = ({ target }) => {
 
-        console.log(event);
-        setInputValue('Hola Mundo');
+        console.log(target.value);
+        setInputValue(target.value);
 
     };
 
+    const onSubmit = ( event ) => {
+        // console.log(event);
+        event.preventDefault();
+        console.log(inputValue);
+    };
+
     return (
-        <input
-            type="text"
-            placeholder="Buscar gifs"
-            value={inputValue}
-            onChange={(event) => onInputChange(event)}
-        />
+        <form onSubmit={ (event) => onSubmit(event) }>
+            <input
+                type="text"
+                placeholder="Buscar gifs"
+                value={inputValue}
+                onChange={onInputChange}
+            />
+        </form>
     )
 }
