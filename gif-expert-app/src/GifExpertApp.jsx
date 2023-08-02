@@ -9,7 +9,11 @@ export const GifExpertApp = () => {
 
     const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
 
-    const onAddCategory = () => {
+    const onAddCategory = (newCategory) => {
+
+        // console.log(newCategory)
+        setCategories([ ...categories, newCategory ]);
+
         // setCategories( (c) => c.push('Valorant'));
         // categories.push('Valorant');
         // setCategories(categories)
@@ -18,7 +22,7 @@ export const GifExpertApp = () => {
         // push muta el objeto y react evita mutar el objeto
 
         // setCategories( cat => [ ...cat, 'Valorant' ]);
-        setCategories(['Valorant', ...categories]);
+        // setCategories(['Valorant', ...categories]);
 
     };
 
@@ -28,10 +32,13 @@ export const GifExpertApp = () => {
             <h1>GifExpertApp</h1>
 
             {/* input */}
-            <AddCategory />
+            <AddCategory 
+                // setCategories={ setCategories }
+                onNewCategory={ (value) => onAddCategory(value) }
+            />
 
             {/* Listado de Gif */}
-            <button onClick={onAddCategory}>Agregar</button>
+            {/* <button onClick={onAddCategory}>Agregar</button> */}
             <ol>
                 {categories.map(category => {
                     return <li key={category}>{category}</li>

@@ -1,25 +1,54 @@
 import { useState } from 'react';
 
+// No es comun ver las props, por lo regular se desestructura y
+// se recibe las props que requerimos
+// export const AddCategory = ( props ) => {
 
-export const AddCategory = () => {
-
-    const [inputValue, setInputValue] = useState('One Punch');
+export const AddCategory = ({ onNewCategory }) => {
+    const [inputValue, setInputValue] = useState('');
 
     const onInputChange = ({ target }) => {
 
-        console.log(target.value);
+        // console.log(target.value);
         setInputValue(target.value);
 
     };
 
     const onSubmit = ( event ) => {
         // console.log(event);
+
+        // Mi intento de la tarea
+        // console.log(props.setCategories);
+        // console.log(props.categories);
+        // console.log(event.target[0].value);
+        
+        // props.setCategories([ ...props.categories, event.target[0].value]);
+        // Fin del intento, no funciono
+
+
+        // console.log(inputValue);
+        
+        // Solucion 1 del profe junto a validaciones
+
+        // if( inputValue.trim().length <= 1 ) return;
+
+        // setCategories( categories => [ ...categories, inputValue ]);
+        // setInputValue('');
+        
+        // Solucion 2 del profe
+        
         event.preventDefault();
-        console.log(inputValue);
+        const newInputValue = inputValue.trim();
+        
+        if(newInputValue <= 1) return;
+        
+        onNewCategory(newInputValue);
+        setInputValue('');
+
     };
 
     return (
-        <form onSubmit={ (event) => onSubmit(event) }>
+        <form onSubmit={ onSubmit }>
             <input
                 type="text"
                 placeholder="Buscar gifs"
