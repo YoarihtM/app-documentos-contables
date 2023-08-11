@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
 
@@ -7,12 +8,15 @@ export const GifExpertApp = () => {
     // tiene que cambiar el html se debe almacenar la información
     // se requiere un hook de react para mantener el estado
 
-    const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
+    const [categories, setCategories] = useState(['Dragon Ball']);
 
     const onAddCategory = (newCategory) => {
 
         // console.log(newCategory)
-        setCategories([ ...categories, newCategory ]);
+
+        if(categories.includes(newCategory)) return;
+
+        setCategories([ newCategory,...categories  ]);
 
         // setCategories( (c) => c.push('Valorant'));
         // categories.push('Valorant');
@@ -28,24 +32,21 @@ export const GifExpertApp = () => {
 
     return (
         <>
-            {/* titulo */}
             <h1>GifExpertApp</h1>
 
-            {/* input */}
             <AddCategory 
-                // setCategories={ setCategories }
                 onNewCategory={ (value) => onAddCategory(value) }
+                
             />
 
-            {/* Listado de Gif */}
-            {/* <button onClick={onAddCategory}>Agregar</button> */}
-            <ol>
-                {categories.map(category => {
-                    return <li key={category}>{category}</li>
-                })
-                }
-            </ol>
-
+            {categories.map(category => 
+                (
+                    <GifGrid 
+                        key={category} 
+                        category={category}
+                    />
+                ))
+            }
         </>
     )
 }
