@@ -1,34 +1,62 @@
-const getGifs = async(category) => {
+import { useEffect, useState } from "react";
+import { getGifs } from "../helpers/getGifs";
 
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=bPXNdwmpklw5fV9bJXaglusPTaOcBFQk&q=${category}&limit=20`;
-    const resp = await fetch( url );
+export const GifGrid = ({ category }) => {
 
-    const { data } = await resp.json();
+    // Se usa el estado para guardar las imagenes de cada busqueda 
+    // y para mostrar los titulos de las imagenes resultantes
+    // ese mismo estado se usará dentro del useEffect para realizar
+    // los cambios de cada busqueda y hay dos formas de hacerlo
+    const [images, setImages] = useState([]);
 
-    const gifs = data.map(img => ({
-        id: img.id,
-        title: img.title,
-        url: img.images.downsized_medium.url
-    }));
+    // el hook useEffect sirve para disparar "Efectos secundarios"
+    // luego de que se realiza una tarea
+    // Tiene dos argumentos el primero es una funcion que ejecuta
+    // el codigo que queremos disparar y el segundo es una lista o
+    // arreglo que indica cuando se va a ejecutar el primer parametro
+    // si se deja vacio significa que solo se va a ejecutar la primera
+    // vez que se renderice el componente
+    
+    // useEffect( () => {
+    //     getGifs(category);
+    // }, [ ])
 
-    console.log(data);
+    // La primera forma de llamar las imagenes con useEffect
+    // aqui se usa el then ya que useEffect no acepta en el 
+    // primer parametro una promesa y siempre debe ser una 
+    // funcion, asi se mantiene sin el uso de async/await
+    
+    // useEffect( () => {
+    //     getGifs(category)
+    //         .then( newImages => setImages(newImages));
+    // }, [ ])
 
-    return gifs;
+    // La segunda forma es usando async/await con una funcion externa
+    const getImages = async () => {
+        const newImages = await getGifs(category);
 
-};
+        setImages(newImages);
+    }
 
-export const GifGrid = ({category, key}) => {
-    getGifs(category);
+    // y al usar el hook useEffect ya se puede llamar la funcion
+    // en el primer parametro, siendo ahora si permitido
+    useEffect( () => {
+        getImages();
+    }, [ ])
 
     return (
 
         <>
             <h3>{category}</h3>
-            {
-                // gifs.map( gif => (
-                //     <p>{ gif }</p>
-                // ))
-            }
+            <ol>
+                {
+                    images.map( ({id, title}) => (
+                        <li key={id}>{ title }</li>
+                    ))
+                }
+            </ol>
+
+
 
         </>
 
