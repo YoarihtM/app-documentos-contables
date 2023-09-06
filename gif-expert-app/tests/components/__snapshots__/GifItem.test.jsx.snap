@@ -6,11 +6,11 @@ exports[`Pruebas de GifItem debe de hacer match con el snapshot 1`] = `
     class="card"
   >
     <img
-      alt="titulo"
-      src="url"
+      alt="Saitama"
+      src="https://one-punch.com/saitama.jpg"
     />
     <p>
-      titulo
+      Saitama
     </p>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PropTypes } from 'prop-types';
 
 // No es comun ver las props, por lo regular se desestructura y
 // se recibe las props que requerimos
@@ -15,6 +16,7 @@ export const AddCategory = ({ onNewCategory }) => {
     };
 
     const onSubmit = ( event ) => {
+        // console.log('Hola mundo desde el submit de AddCategory');
         // console.log(event);
 
         // Mi intento de la tarea
@@ -48,7 +50,7 @@ export const AddCategory = ({ onNewCategory }) => {
     };
 
     return (
-        <form onSubmit={ onSubmit }>
+        <form onSubmit={ onSubmit } aria-label="form">
             <input
                 type="text"
                 placeholder="Buscar gifs"
@@ -58,3 +60,8 @@ export const AddCategory = ({ onNewCategory }) => {
         </form>
     )
 }
+
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
+};
